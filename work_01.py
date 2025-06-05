@@ -3,10 +3,10 @@
 # for i in range(5):
 # a = int(input())
 # if n == a:
-# print("正解")
+# print("正解です")
 # break
 # else:
-# print("不正解")
+# print("不正解です")
 # print(f"正解は{n}です")
 #import random
 #rn = random.randint(1,100)
