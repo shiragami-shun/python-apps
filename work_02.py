@@ -3,7 +3,7 @@ import random
 import math
 li = []
 z = 100
-print("反射神経テストを始めます。！！！！！という文字が見えたらenterを押してください")
+print("反射神経テストを始めます。！！！！！という合図が見えたらenterを押してください")
 while True:
   n = random.randint(5,15)
   time.sleep(n)
