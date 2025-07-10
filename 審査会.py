@@ -3,7 +3,6 @@ import time
 a = time.strftime("%Y")
 b = time.strftime("%m")
 c = time.strftime("%d")
-num = 0
 y = []
 j = []
 while True:
@@ -13,7 +12,7 @@ while True:
     print("本日行う予定を入力してください。(例:買い物,勉強)")
     e = input()
     j.append(e)
-    if num != 0:
+    if len(y) != 0:
         for i in range(len(y)):
             if i == 0:
                 print(f"{a}-{b}-{c}-{y[i]},{j[i]}")
@@ -25,7 +24,6 @@ while True:
     f = input()
     if f.lower() == "yes":
         print("それではもう一度入力します。")
-        num += 1
     else:
         print("それではこのプログラムを終了します。ありがとうございました！")
         break
