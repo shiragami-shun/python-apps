@@ -1,17 +1,23 @@
 import time
-
+# timeモジュールをインポート
 a = time.strftime("%Y")
 b = time.strftime("%m")
 c = time.strftime("%d")
+# 現在の年、月、日を取得
 times = []
 events = []
+# ユーザーが入力した時間と予定を格納するリスト
+print("このプログラムは、今日の予定帳を作成するプログラムです")
 while True:
+    # 無限ループで繰り返し入力を受け付ける
     print("時間を入力してください。(例:12:00~18:00)")
     d = input()
     times.append(d)
+    # 予定の時間を入力
     print("本日行う予定を入力してください。(例:買い物,勉強)")
     e = input()
     events.append(e)
+    # 予定の内容を入力
     if len(times) != 0:
         for i in range(len(times)):
             if i == 0:
@@ -20,6 +26,8 @@ while True:
                 print(f"{times[i]},{events[i]}")
     else:
         print(f"{a}-{b}-{c}-{times[0]},{events[0]}")
+    # 入力された時間と予定を表示
+
     print("もう一度入力しますか？続ける場合はYesを終わる場合はNoを入力してください。")
     f = input()
     if f.lower() == "yes":
@@ -27,3 +35,4 @@ while True:
     else:
         print("それではこのプログラムを終了します。ありがとうございました！")
         break
+    # ユーザーが続けるかどうかを確認
