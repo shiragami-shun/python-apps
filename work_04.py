@@ -57,8 +57,6 @@ while True:
     cursor.execute(sql, values)
     conn.commit()  # ← これが必要
 
-    print(cursor.rowcount, "件追加されました")
-
     cursor.close()
     conn.close()
     import mysql.connector
@@ -72,7 +70,29 @@ while True:
 
     cursor = conn.cursor()
 
-    # record_time が速い順に上位5件
+    # id が大きい順に並べて最新の1件を取得
+    cursor.execute("SELECT * FROM record ORDER BY id DESC LIMIT 1")
+    row = cursor.fetchone()
+
+    if row:
+        print(f"前回の記録: id={row[0]}, name={row[1]}, time={row[2]}秒, at={row[3]}")
+    else:
+        print("データがありません。")
+
+    cursor.close()
+    conn.close()
+
+    import mysql.connector
+
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Shun13579",
+        database="work04"
+    )
+
+    cursor = conn.cursor()
+
     cursor.execute("SELECT * FROM record ORDER BY record_time ASC LIMIT 1")
     rows = cursor.fetchall()
 
