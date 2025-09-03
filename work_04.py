@@ -46,22 +46,6 @@ while True:
     import mysql.connector
 
     conn = mysql.connector.connect(
-        host="localhost", user="root", password="Shun13579", database="work04"
-    )
-
-    cursor = conn.cursor()
-
-    # データを挿入
-    sql = "INSERT INTO record (name, record_time, started_at) VALUES (%s, %s, %s)"
-    values = (name, f, time.strftime("%Y-%m-%d %H:%M:%S"))
-    cursor.execute(sql, values)
-    conn.commit()  # ← これが必要
-
-    cursor.close()
-    conn.close()
-    import mysql.connector
-
-    conn = mysql.connector.connect(
         host="localhost",
         user="root",
         password="Shun13579",
@@ -78,6 +62,22 @@ while True:
         print(f"前回の記録: id={row[0]}, name={row[1]}, time={row[2]}秒, at={row[3]}")
     else:
         print("データがありません。")
+
+    cursor.close()
+    conn.close()
+    import mysql.connector
+
+    conn = mysql.connector.connect(
+        host="localhost", user="root", password="Shun13579", database="work04"
+    )
+
+    cursor = conn.cursor()
+
+    # データを挿入
+    sql = "INSERT INTO record (name, record_time, started_at) VALUES (%s, %s, %s)"
+    values = (name, f, time.strftime("%Y-%m-%d %H:%M:%S"))
+    cursor.execute(sql, values)
+    conn.commit()  # ← これが必要
 
     cursor.close()
     conn.close()
