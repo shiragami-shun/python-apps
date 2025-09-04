@@ -15,11 +15,13 @@ while True:
     print("スタート！")
     time.sleep(n)
     print("！！！！！")
+
     s = time.time()
     a = input()
     e = time.time()
     r = e - s
     b = math.floor(r * 10000) / 10000
+
     if b <= 0.01:
         print("不正を検知しました。正しい方法でのテストのみ結果を表示します")
     elif b < 0.16:
@@ -43,6 +45,7 @@ while True:
         f = r
         li.append(b)
     time.sleep(2)
+
     import mysql.connector
 
     conn = mysql.connector.connect(
@@ -54,7 +57,6 @@ while True:
 
     cursor = conn.cursor()
 
-    # id が大きい順に並べて最新の1件を取得
     cursor.execute("SELECT * FROM record ORDER BY id DESC LIMIT 1")
     row = cursor.fetchone()
 
@@ -73,7 +75,6 @@ while True:
 
     cursor = conn.cursor()
 
-    # データを挿入
     sql = "INSERT INTO record (name, record_time, started_at) VALUES (%s, %s, %s)"
     values = (name, f, time.strftime("%Y-%m-%d %H:%M:%S"))
     cursor.execute(sql, values)
