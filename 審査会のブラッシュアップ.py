@@ -16,19 +16,39 @@ c = time.strftime("%d")
 times = []
 events = []
 
+
+def add_placeholder(entry, placeholder):
+    """Entryにプレースホルダーを追加"""
+    entry.insert(0, placeholder)
+    entry.config(fg="gray")
+
+    def on_focus_in(event):
+        if entry.get() == placeholder:
+            entry.delete(0, tk.END)
+            entry.config(fg="black")
+
+    def on_focus_out(event):
+        if not entry.get():
+            entry.insert(0, placeholder)
+            entry.config(fg="gray")
+
+    entry.bind("<FocusIn>", on_focus_in)
+    entry.bind("<FocusOut>", on_focus_out)
+
+
 # ラベル
 label_intro = tk.Label(root, text="時間と予定を入力してください", font=("Arial", 12))
 label_intro.pack(pady=10)
 
 # 時間入力
 entry_time = tk.Entry(root, width=30)
-entry_time.insert(0, "例: 12:00~18:00")
 entry_time.pack()
+add_placeholder(entry_time, "例: 12:00~18:00")
 
 # イベント入力
 entry_event = tk.Entry(root, width=30)
-entry_event.insert(0, "例: 買い物, 勉強")
 entry_event.pack()
+add_placeholder(entry_event, "例: 買い物, 勉強")
 
 # 予定表示用
 text_output = tk.Text(root, height=15, width=45)
@@ -39,9 +59,12 @@ text_output.pack(pady=10)
 def add_schedule():
     t = entry_time.get()
     e = entry_event.get()
-    if not t or not e:
+
+    # プレースホルダーがそのままなら無効扱い
+    if t in ["例: 12:00~18:00", ""] or e in ["例: 買い物, 勉強", ""]:
         messagebox.showwarning("入力エラー", "時間と予定の両方を入力してください")
         return
+
     times.append(t)
     events.append(e)
 
@@ -50,6 +73,10 @@ def add_schedule():
     )
     entry_time.delete(0, tk.END)
     entry_event.delete(0, tk.END)
+
+    # 入力欄に再度プレースホルダーを設定
+    add_placeholder(entry_time, "例: 12:00~18:00")
+    add_placeholder(entry_event, "例: 買い物, 勉強")
 
 
 # ボタン追加
