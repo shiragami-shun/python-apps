@@ -60,7 +60,9 @@ def add_schedule():
     e = entry_event.get()
 
     # 入力チェック
-    if d in ["例: 2025-09-17", ""] or t in ["例: 12:00~18:00", ""] or e in ["例: 買い物, 勉強", ""]:
+    if d in ["例: 2025-09-17", ""] or \
+       t in ["例: 12:00~18:00", ""] or \
+       e in ["例: 買い物, 勉強", ""]:
         messagebox.showwarning("入力エラー", "日付・時間・予定のすべてを入力してください")
         return
 
