@@ -11,11 +11,10 @@ print("反射神経テストを始めます。！！！！！という合図が�
 while True:
     n = random.randint(5, 15)
     print("準備ができたらenterを押してください")
-    y = input()
+    input()
     print("スタート！")
     time.sleep(n)
     print("！！！！！")
-
     s = time.time()
     a = input()
     e = time.time()
